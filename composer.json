@@ -1,0 +1,9 @@
+{
+  "name": "febalist/laravel-router",
+  "autoload": {
+    "psr-4": {
+      "Febalist\\LaravelRouter\\": "src/"
+    }
+  },
+  "require": {}
+}
