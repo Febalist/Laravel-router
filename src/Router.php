@@ -46,11 +46,13 @@ class Router
         static::delete($route, $uri);
     }
 
-    public static function group($route, $callback)
+    public static function group($route, $callback, $middleware = null)
     {
-        static::$routes[] = $route;
-        call_user_func($callback);
-        array_pop(static::$routes);
+        static::middleware($middleware, function () use ($route, $callback) {
+            static::$routes[] = $route;
+            call_user_func($callback);
+            array_pop(static::$routes);
+        });
     }
 
     public static function middleware($middleware, $callback)
@@ -59,9 +61,13 @@ class Router
             $middleware = [$middleware];
         }
 
-        Route::group([
-            'middleware' => $middleware,
-        ], $callback);
+        if ($middleware) {
+            Route::group([
+                'middleware' => $middleware,
+            ], $callback);
+        } else {
+            call_user_func($callback);
+        }
     }
 
     public static function rest($origin, $resource = null, $group = null)
