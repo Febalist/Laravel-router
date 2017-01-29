@@ -1,9 +1,11 @@
 {
-  "name": "febalist/laravel-router",
-  "autoload": {
-    "psr-4": {
-      "Febalist\\LaravelRouter\\": "src/"
+    "name": "febalist/laravel-router",
+    "autoload": {
+        "psr-4": {
+            "Febalist\\LaravelRouter\\": "src/"
+        }
+    },
+    "require": {
+        "laravel/framework": "5.2.*|5.3.*"
     }
-  },
-  "require": {}
 }
